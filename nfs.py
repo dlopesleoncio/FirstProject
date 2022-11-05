@@ -1,10 +1,10 @@
 import os
 import csv
+import xml.etree.ElementTree as ET
 
 data = []
 header = ['fornecedor','produto','nota fiscal']
 def obter_nome(arquivo):
-	import xml.etree.ElementTree as ET
 	tree = ET.parse(arquivo)
 	root = tree.getroot()
 	nome = []
@@ -18,7 +18,7 @@ def obter_nome(arquivo):
 			prod.append(child.text)
 		if child.tag == "{http://www.portalfiscal.inf.br/nfe}infNFe":
 			idd.append(child.attrib)
-	print(idd)			
+
 	data.append([nome[0],prod[0],idd[0]])
 	
 
