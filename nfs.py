@@ -1,8 +1,10 @@
 import os
 import csv
 import xml.etree.ElementTree as ET
+import sdatabase as sd
 
 data = []
+
 header = ['fornecedor','produto','nota fiscal']
 def obter_nome(arquivo):
 	tree = ET.parse(arquivo)
@@ -20,9 +22,13 @@ def obter_nome(arquivo):
 			idd.append(child.attrib)
 
 	data.append([nome[0],prod[0],idd[0]])
-	
+	sd.database(nome[0],prod[0],str(idd[0]))
 
-diretorio = "/home/diogo/Documentos/Programacao/python/xmlProject/FirstProject/NFS/042021"
+#diretorio onde está o os arquivos xml
+cwd = os.getcwd()
+dirnfs = "NFS/042021"
+
+diretorio = cwd + dirnfs
 def obter_arquivos_xml(diretorio):
     ret = []
     for arq in os.listdir( diretorio ):
@@ -39,3 +45,5 @@ with open('database.csv','w',newline='') as f:
 	writer.writerow(header)
 
 	writer.writerows(data)
+
+sd.inserdata()
