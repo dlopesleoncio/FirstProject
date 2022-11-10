@@ -2,4 +2,4 @@
 First fullstack project
 
 Project still in progress
-A website that will seach contents from a database containing xml files.
+A website that will search contents from a database containing xml files.
