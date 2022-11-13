@@ -30,8 +30,8 @@ def inserdata():
 def index():
   name = request.form.get("name")
   mycursor = mydb.cursor()
-  mycursor.execute("SELECT fornecedor FROM databasesolar WHERE fornecedor LIKE '%WEG%'")
-  #mycursor.execute("SELECT fornecedor FROM databasesolar WHERE fornecedor LIKE '%WEG%'",(name,))
+  query = "SELECT * FROM databasesolar WHERE fornecedor LIKE '%NAME%'".replace('NAME',name)
+  mycursor.execute(query)
 
   myresult = mycursor.fetchall()
   return render_template("index.html",dados=myresult,name1=name)

@@ -21,13 +21,16 @@ def obter_nome(arquivo):
 		if child.tag == "{http://www.portalfiscal.inf.br/nfe}infNFe":
 			idd.append(child.attrib)
 
+#lista para criação de csv
 	data.append([nome[0],prod[0],idd[0]])
+#lista para criação de database chamando a função database dentro arquivo sdatabase
 	sd.database(nome[0],prod[0],str(idd[0]))
 
 #diretorio onde está o os arquivos xml
 cwd = os.getcwd()
 dirnfs = "NFS/042021"
 
+#obtendo nomes de varios arquivos dentro de um diretório
 diretorio = cwd + dirnfs
 def obter_arquivos_xml(diretorio):
     ret = []
@@ -36,6 +39,7 @@ def obter_arquivos_xml(diretorio):
             ret.append( os.path.join( diretorio, arq ) )
     return ret
 ret = obter_arquivos_xml(diretorio)
+
 
 for arquivo in ret:
 	obter_nome(arquivo)
